@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Form</title>
+</head>
+<body>
+
+    <h2>Billing Address</h2>
+    <form action="submit_form.php" method="POST">
+        <!-- Text Input -->
+        <label for="firstname">First name:</label>
+        <input type="text" id="firstname" name="firstname" required><br><br>
+
+        <label for="lastname">Last name:</label>
+        <input type="text" id="lastname" name="lastname" required><br><br>
+
+        <!-- Radio Input -->
+        <label for="username">Username:</label><br>
+        <input type="radio" id="username1" name="username" value="user1" required> User1<br>
+        <input type="radio" id="username2" name="username" value="user2"> User2<br><br>
+
+        <!-- Email Input -->
+        <label for="email">Email (Optional):</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <!-- Textarea -->
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="2" cols="20" required></textarea><br><br>
+
+        <!-- Select Dropdown -->
+        <label for="country">Country:</label>
+        <select id="country" name="country" required>
+            <option value="">Choose...</option>
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+        </select><br><br>
+
+        <!-- Date Input -->
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob"><br><br>
+
+        <!-- Checkbox Input -->
+        <label for="billing_same">Shipping address is the same as my billing address</label>
+        <input type="checkbox" id="billing_same" name="billing_same"><br><br>
+
+        <label for="save_info">Save this information for next time</label>
+        <input type="checkbox" id="save_info" name="save_info"><br><br>
+
+        <!-- Payment Section -->
+        <h3>Payment</h3>
+
+        <!-- Credit Card Type -->
+        <label for="payment_method">Payment Method:</label><br>
+        <input type="radio" id="credit" name="payment_method" value="credit" required> Credit Card<br>
+        <input type="radio" id="debit" name="payment_method" value="debit"> Debit Card<br>
+        <input type="radio" id="paypal" name="payment_method" value="paypal"> PayPal<br><br>
+
+        <!-- Credit Card Number -->
+        <label for="card_number">Credit card number:</label>
+        <input type="text" id="card_number" name="card_number" required><br><br>
+
+        <!-- Expiration Date -->
+        <label for="expiration">Expiration Date:</label>
+        <input type="date" id="expiration" name="expiration" required><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Continue to checkout</button>
+    </form>
+
+</body>
+</html>

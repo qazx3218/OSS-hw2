@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Checkout Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: black;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #4ea9e1;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .row div {
+            flex: 48%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Billing Address</h2>
+    <form action="submit_form.php" method="POST">
+        <div class="form-group">
+            <label for="firstname">First name:</label>
+            <input type="text" id="firstname" name="firstname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="lastname">Last name:</label>
+            <input type="text" id="lastname" name="lastname" required>
+        </div>
+
+        <div class="form-group">
+            <label>Username:</label><br>
+            <input type="radio" id="username1" name="username" value="user1" required> User1
+            <input type="radio" id="username2" name="username" value="user2"> User2
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email (Optional):</label>
+            <input type="email" id="email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="2" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="">Choose...</option>
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob">
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" id="billing_same" name="billing_same">
+            <label for="billing_same">Shipping address is the same as my billing address</label>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" id="save_info" name="save_info">
+            <label for="save_info">Save this information for next time</label>
+        </div>
+
+        <h3>Payment</h3>
+
+        <div class="form-group">
+            <label>Payment Method:</label><br>
+            <input type="radio" id="credit" name="payment_method" value="credit" required> Credit Card
+            <input type="radio" id="debit" name="payment_method" value="debit"> Debit Card
+            <input type="radio" id="paypal" name="payment_method" value="paypal"> PayPal
+        </div>
+
+        <div class="form-group">
+            <label for="card_number">Credit card number:</label>
+            <input type="text" id="card_number" name="card_number" required>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <label for="expiration">Expiration Date:</label>
+                <input type="date" id="expiration" name="expiration" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+            </div>
+        </div>
+
+        <button type="submit">Continue to checkout</button>
+    </form>
+
+</body>
+</html>
