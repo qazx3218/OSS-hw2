@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX CRUD Example</title>
+</head>
+<body>
+    <h1>User Management</h1>
+
+    <h2>Add New User</h2>
+    <form id="add-user-form">
+        <input type="text" id="name" placeholder="Name" required>
+        <input type="text" id="email" placeholder="Email" required>
+        <button type="submit">Add User</button>
+    </form>
+
+    <h2>User List</h2>
+    <div id="user-list"></div>
+
+    <script>
+        const apiUrl = 'http://localhost:3000/Users';
+
+        // 1. 데이터 조회 (Read)
+        async function fetchUsers() {
+            const response = await fetch(apiUrl);
+            const users = await response.json();
+
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = users.map(user => `
+                <div id="user-${user.id}">
+                    <p>Name: ${user.name}, Email: ${user.email}</p>
+                    <button onclick="editUser(${user.id}, '${user.name}', '${user.email}')">Edit</button>
+                    <button onclick="deleteUser(${user.id})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        fetchUsers();
+
+        // 2. 데이터 추가 (Create)
+        document.getElementById('add-user-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email })
+            });
+
+            if (response.ok) {
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                fetchUsers(); 
+            }
+        });
+
+        // 3. 데이터 수정 (Update)
+        async function editUser(id, currentName, currentEmail) {
+            const newName = prompt("Enter new name:", currentName);
+            const newEmail = prompt("Enter new email:", currentEmail);
+
+            if (newName && newEmail) {
+                const response = await fetch(`${apiUrl}/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: newName, email: newEmail })
+                });
+
+                if (response.ok) {
+                    fetchUsers(); 
+                }
+            }
+        }
+
+        // 4. 데이터 삭제 (Delete)
+        async function deleteUser(id) {
+            const response = await fetch(`${apiUrl}/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                fetchUsers(); 
+            }
+        }
+    </script>
+</body>
+</html>
